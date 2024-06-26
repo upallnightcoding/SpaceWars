@@ -6,27 +6,19 @@ using UnityEngine.InputSystem;
 public class InputCntrl : MonoBehaviour
 {
     public Vector2 Move { get; set; }
-
+    public bool Fire { get; set; }
+ 
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            //Look = context.ReadValue<Vector2>();
-            //Debug.Log($"OnLook Performed: {context.ReadValue<Vector2>()}");
-        }
-    }
-
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Debug.Log($"OnMove Performed: {context.ReadValue<Vector2>()}");
+            //Debug.Log($"OnMove Performed: {context.ReadValue<Vector2>()}");
             Move = context.ReadValue<Vector2>();
         }
 
@@ -38,9 +30,16 @@ public class InputCntrl : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.canceled)
         {
-            Debug.Log("Fire Weapon  ...");
+            Fire = false;
         }
+
+        if (context.started)
+        {
+            Fire = true;
+        }
+
+      
     }
 }
