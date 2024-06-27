@@ -7,6 +7,7 @@ using TMPro;
 public class UiCntrl : MonoBehaviour
 {
     [SerializeField] private Slider sliderAmmo;
+    [SerializeField] private Image sliderAmmoColor;
     [SerializeField] private TMP_Text ammoText;
     
     // Start is called before the first frame update
@@ -21,19 +22,32 @@ public class UiCntrl : MonoBehaviour
         
     }
 
-    public void UpdateAmmo(float value)
+    public void UpdateAmmo(float fraction)
     {
-        sliderAmmo.value = value;
-        ammoText.text = ((int)(value * 100)).ToString() + "%";
+        ShowAmmoPercentage(fraction, Color.blue);
+    }
+
+    public void ReLoadAmmo(float fraction)
+    {
+        ShowAmmoPercentage(fraction, Color.yellow);
+    }
+
+    private void ShowAmmoPercentage(float fraction, Color color)
+    {
+        sliderAmmoColor.color = color;
+        sliderAmmo.value = fraction;
+        ammoText.text = ((int)(fraction * 100)).ToString() + "%";
     }
 
     private void OnEnable()
     {
         EventManager.Instance.OnUpdateAmmo += UpdateAmmo;
+        EventManager.Instance.OnReloadAmmo += ReLoadAmmo;
     }
 
     private void OnDisable()
     {
         EventManager.Instance.OnUpdateAmmo -= UpdateAmmo;
+        EventManager.Instance.OnReloadAmmo -= ReLoadAmmo;
     }
 }

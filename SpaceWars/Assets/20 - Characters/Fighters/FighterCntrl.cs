@@ -19,6 +19,7 @@ public class FighterCntrl : MonoBehaviour
 
     private bool readyToFire = true;
     private int ammoCount = 100;
+    private float reloadTime = 3.0f;
 
     //private Vector2 Move { get; set; }
     //private bool Fire { get; set; }
@@ -93,10 +94,35 @@ public class FighterCntrl : MonoBehaviour
     {
         if (fire && readyToFire)
         {
-            StartCoroutine(FireMissle());
+            if (ammoCount > 0)
+            {
+                StartCoroutine(FireMissle());
+            } else
+            {
+                StartCoroutine(ReLoad());
+            }
         }
     }
-    
+
+    private IEnumerator ReLoad()
+    {
+        float timing = 0.0f;
+
+        readyToFire = false;
+
+        while (timing < reloadTime)
+        {
+            EventManager.Instance.InvokeOnReloadAmmo(timing / reloadTime);
+
+            timing += Time.deltaTime;
+            yield return null;
+        }
+
+        ammoCount = 100;
+        readyToFire = true;
+        EventManager.Instance.InvokeOnUpdateAmmo(1.0f);
+    }
+
     private IEnumerator FireMissle()
     {
         readyToFire = false;

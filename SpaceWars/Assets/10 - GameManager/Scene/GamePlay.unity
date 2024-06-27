@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &109799093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8463102798845782004, guid: adc498e1197c0284eb41a2abba5548cc, type: 3}
+  m_PrefabInstance: {fileID: 8240726993319687388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliderAmmo: {fileID: 2082111338}
+  sliderAmmoColor: {fileID: 109799093}
   ammoText: {fileID: 1458008444}
 --- !u!1 &1160234425
 GameObject:
@@ -3240,7 +3252,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 378538600947842191, guid: 8a11b55b87e7a0744a606fdd43b07613, type: 3}
       propertyPath: m_Name
-      value: Label_HP
+      value: AmmoSliderText
       objectReference: {fileID: 0}
     - target: {fileID: 1990594193549166204, guid: 8a11b55b87e7a0744a606fdd43b07613, type: 3}
       propertyPath: m_text
@@ -3596,7 +3608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6851061457708453029, guid: adc498e1197c0284eb41a2abba5548cc, type: 3}
       propertyPath: m_Name
-      value: Slider_SciFi_Horizontal
+      value: AmmoSlider
       objectReference: {fileID: 0}
     - target: {fileID: 7156924125190553902, guid: adc498e1197c0284eb41a2abba5548cc, type: 3}
       propertyPath: m_Value
