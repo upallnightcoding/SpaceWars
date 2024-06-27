@@ -20,8 +20,6 @@ public class EnemyFighterCntrl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("EnemyFighterCntrl ...");
-
         if (collision.gameObject.TryGetComponent<AmmoCntrl>(out AmmoCntrl ammo)) {
             health -= 10;
 
@@ -29,6 +27,8 @@ public class EnemyFighterCntrl : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+
+            Destroy(collision.gameObject);
         }
     }
 }

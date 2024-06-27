@@ -15,10 +15,13 @@ public class FighterCntrl : MonoBehaviour
  
     private float yaw = 0.0f;
 
-    private bool readyToFire = true;
+    private int nGuns = 2;
 
-    private Vector2 Move { get; set; }
-    private bool Fire { get; set; }
+    private bool readyToFire = true;
+    private int ammoCount = 100;
+
+    //private Vector2 Move { get; set; }
+    //private bool Fire { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +32,10 @@ public class FighterCntrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 Move = inputCntrl.Move;
+        Vector2 move = inputCntrl.Move;
         bool fire = inputCntrl.Fire;
 
-        MoveFighter(Move, Time.deltaTime);
+        MoveFighter(move, Time.deltaTime);
         FireWeapon(fire);
     }
 
@@ -98,13 +101,17 @@ public class FighterCntrl : MonoBehaviour
     {
         readyToFire = false;
 
-        GameObject go = null;
-        go = Instantiate(missilePrefab, muzzlePoint[0].position, transform.rotation);
-        Destroy(go, 2.0f);
-        go = Instantiate(missilePrefab, muzzlePoint[1].position, transform.rotation);
-        Destroy(go, 2.0f);
+        for (int i = 0; i < nGuns; i++)
+        {
+            GameObject go = Instantiate(missilePrefab, muzzlePoint[i].position, transform.rotation);
+            Destroy(go, 2.0f);
+        }
 
-        yield return new WaitForSeconds(0.5f);
+        ammoCount -= 2;
+
+        EventManager.Instance.InvokeOnUpdateAmmo(ammoCount / 100.0f);
+
+        yield return new WaitForSeconds(0.1f);
         readyToFire = true;
     }
 }

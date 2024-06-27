@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class InputCntrl : MonoBehaviour
 {
-    public Vector2 Move { get; set; }
-    public bool Fire { get; set; }
+    public Vector2 Move { get; private set; }
+    public bool Fire { get; private set; }
  
     // Start is called before the first frame update
     void Start()
