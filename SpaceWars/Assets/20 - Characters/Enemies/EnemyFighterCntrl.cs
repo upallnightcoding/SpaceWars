@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyFighterCntrl : MonoBehaviour
 {
+    private int health = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +21,14 @@ public class EnemyFighterCntrl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("EnemyFighterCntrl ...");
+
+        if (collision.gameObject.TryGetComponent<AmmoCntrl>(out AmmoCntrl ammo)) {
+            health -= 10;
+
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

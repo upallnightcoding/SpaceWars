@@ -30,16 +30,14 @@ public class InputCntrl : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.canceled)
-        {
-            Fire = false;
-        }
-
         if (context.started)
         {
             Fire = true;
         }
 
-      
+        if (context.canceled)
+        {
+            Fire = false;
+        }
     }
 }
