@@ -15,7 +15,7 @@ public class FighterCntrl : MonoBehaviour
  
     private float yaw = 0.0f;
 
-    private int nGuns = 2;
+    private int nGuns = 0;
 
     private bool readyToFire = true;
     private int ammoCount = 100;
@@ -27,7 +27,7 @@ public class FighterCntrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        nGuns = muzzlePoint.Length;
     }
 
     // Update is called once per frame
