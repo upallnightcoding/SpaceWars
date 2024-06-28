@@ -18,7 +18,6 @@ public class InputCntrl : MonoBehaviour
     {
         if (context.performed)
         {
-            //Debug.Log($"OnMove Performed: {context.ReadValue<Vector2>()}");
             Move = context.ReadValue<Vector2>();
         }
 

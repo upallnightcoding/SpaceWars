@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7613602021226348100}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.95, z: 6.97}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.98, z: 6.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4167705360659251273}
-  m_RootOrder: 1
+  m_Father: {fileID: 7993901441176047931}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7997632612579887091
 GameObject:
@@ -63,7 +63,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3644744176854328022}
   m_Father: {fileID: 4167705360659251273}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -158,7 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzlePoint:
   - {fileID: 3644744176854328022}
-  missilePrefab: {fileID: 3708117170058766710, guid: 36a451a61ec280c49ad6f2c3b068e1d4, type: 3}
+  missilePrefab: {fileID: 3708117170058766710, guid: 4a691bddf3b873f4a92667f1c8e82e68, type: 3}
+  explosionPreFab: {fileID: 8856127284323510698, guid: e0bae1fa58bef3b4893048eeb31b3444, type: 3}
 --- !u!1 &8304138371217006731
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +190,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7993901441176047931}
-  - {fileID: 3644744176854328022}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -6,14 +6,19 @@ public class EnemyFighterCntrl : MonoBehaviour
 {
     [SerializeField] private Transform[] muzzlePoint;
     [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private GameObject explosionPreFab;
 
-    private int health = 100;
+    private int health = 50;
 
     private int nGuns = 0;
 
     private bool readyToFire = true;
 
     private int ammoCount = 50;
+
+    private float speed = 15.0f;
+
+    private Transform fighter = null;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +29,25 @@ public class EnemyFighterCntrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MoveFighter();
         FireWeapon();
+    }
+
+    public void StartGame(Transform fighter, Vector3 position)
+    {
+        this.fighter = fighter;
+        transform.position = position;
+    }
+
+    private void MoveFighter()
+    {
+        if (fighter != null)
+        {
+            Vector3 direction = (fighter.position - transform.position).normalized;
+            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.localRotation = targetRotation;
+        }
     }
 
     private void FireWeapon()
@@ -47,7 +70,7 @@ public class EnemyFighterCntrl : MonoBehaviour
 
         ammoCount -= nGuns;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         readyToFire = true;
     }
 
@@ -58,6 +81,7 @@ public class EnemyFighterCntrl : MonoBehaviour
 
             if (health <= 0)
             {
+                Instantiate(explosionPreFab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
 

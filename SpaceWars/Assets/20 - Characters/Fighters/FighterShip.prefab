@@ -179,11 +179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997e1f8894a78194a8c02ce2612322c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: ad9d7c3aaf677644ea4176be8123d070, type: 2}
   inputCntrl: {fileID: 984210399439022856}
   missilePrefab: {fileID: 3708117170058766710, guid: 36a451a61ec280c49ad6f2c3b068e1d4, type: 3}
   muzzlePoint:
   - {fileID: 6411922521972219711}
   - {fileID: 6774148418241192330}
+  cameraObject: {fileID: 0}
 --- !u!1 &123358783830430060
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class FighterCntrl : MonoBehaviour
     [SerializeField] private Transform[] muzzlePoint;
     [SerializeField] private Transform cameraObject;
 
-    private float speed = 60.0f;
+    private float speed = 150.0f;
     private float yawAmount = 300.0f;
  
     private float yaw = 0.0f;
@@ -55,8 +55,12 @@ public class FighterCntrl : MonoBehaviour
 
     private void MoveFighterWithoutYaw(Vector2 moveDirection, float dt)
     {
+        float horizontalInput = moveDirection.x;
+        float verticalInput = moveDirection.y;
+
         Vector3 direction = new Vector3(moveDirection.x, 0.0f, moveDirection.y).normalized;
-        transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        float troddle = Mathf.Sqrt(verticalInput * verticalInput + horizontalInput * horizontalInput);
+        transform.Translate(direction * speed * troddle * Time.deltaTime, Space.World);
 
         if (direction != Vector3.zero)
         {
