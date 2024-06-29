@@ -12,7 +12,7 @@ public class FighterCntrl : MonoBehaviour
 
     private float speed = 150.0f;
     private float yawAmount = 300.0f;
- 
+
     private float yaw = 0.0f;
 
     private int nGuns = 0;
@@ -20,6 +20,8 @@ public class FighterCntrl : MonoBehaviour
     private bool readyToFire = true;
     private int ammoCount = 100;
     private float reloadTime = 3.0f;
+
+    private int health = 50;
 
     //private Vector2 Move { get; set; }
     //private bool Fire { get; set; }
@@ -42,7 +44,7 @@ public class FighterCntrl : MonoBehaviour
 
     private void MoveFighter(Vector2 moveDirection, float dt)
     {
-        switch(gameData.flightMode)
+        switch (gameData.flightMode)
         {
             case FlightMode.WITHOUT_YAW:
                 MoveFighterWithoutYaw(moveDirection, dt);
@@ -81,12 +83,12 @@ public class FighterCntrl : MonoBehaviour
         transform.Translate(position, Space.World);
 
         yaw += horizontalInput * yawAmount * dt * Mathf.Sign(verticalInput);
-        
+
         float pitch = 0.0f;
         float roll = Mathf.Lerp(0, 45, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput) * 3.0f;
 
         Vector3 angles = Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll;
-        
+
         transform.localRotation = Quaternion.Euler(angles);
 
         angles = cameraObject.eulerAngles;
@@ -101,7 +103,8 @@ public class FighterCntrl : MonoBehaviour
             if (ammoCount > 0)
             {
                 StartCoroutine(FireMissle());
-            } else
+            }
+            else
             {
                 StartCoroutine(ReLoad());
             }
@@ -143,5 +146,16 @@ public class FighterCntrl : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         readyToFire = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Fighter Cntrl ...");
+        if (collision.gameObject.TryGetComponent<EnemyAmmoCntrl>(out EnemyAmmoCntrl ammo))
+        {
+            health -= 5;
+
+            EventManager.Instance.InvokeOnUpdateFighterHealth(health / 100.0f);
+        }
     }
 }

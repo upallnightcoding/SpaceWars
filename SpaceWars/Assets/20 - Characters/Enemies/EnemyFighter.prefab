@@ -43,8 +43,6 @@ GameObject:
   - component: {fileID: 7964087735418522617}
   - component: {fileID: 7975094376019401635}
   - component: {fileID: 7933181879211651271}
-  - component: {fileID: 2282900818718225449}
-  - component: {fileID: 8970158006786814617}
   m_Layer: 0
   m_Name: SM_Ship_Fighter_01
   m_TagString: Untagged
@@ -132,35 +130,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 0bcc36066aa526046b4c97f1aea7e2c9, type: 3}
---- !u!65 &2282900818718225449
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7997632612579887091}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 11.344577, y: 3.2102857, z: 13.522604}
-  m_Center: {x: -0.06415892, y: -0.4104817, z: -0.022224426}
---- !u!114 &8970158006786814617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7997632612579887091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 913d57298342ed04c9a74280dd34ce0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  muzzlePoint:
-  - {fileID: 3644744176854328022}
-  missilePrefab: {fileID: 3708117170058766710, guid: 4a691bddf3b873f4a92667f1c8e82e68, type: 3}
-  explosionPreFab: {fileID: 8856127284323510698, guid: e0bae1fa58bef3b4893048eeb31b3444, type: 3}
 --- !u!1 &8304138371217006731
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +139,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4167705360659251273}
+  - component: {fileID: 2545989360726324139}
+  - component: {fileID: 5342273243875890256}
   m_Layer: 0
   m_Name: EnemyFighter
   m_TagString: Untagged
@@ -193,3 +164,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2545989360726324139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304138371217006731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.344577, y: 3.2102857, z: 13.522604}
+  m_Center: {x: -0.06415892, y: -0.4104817, z: -0.022224426}
+--- !u!114 &5342273243875890256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304138371217006731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913d57298342ed04c9a74280dd34ce0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzlePoint:
+  - {fileID: 3644744176854328022}
+  missilePrefab: {fileID: 3708117170058766710, guid: 4a691bddf3b873f4a92667f1c8e82e68, type: 3}
+  explosionPreFab: {fileID: 8856127284323510698, guid: e0bae1fa58bef3b4893048eeb31b3444, type: 3}

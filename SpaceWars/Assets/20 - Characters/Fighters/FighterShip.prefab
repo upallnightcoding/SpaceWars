@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 123262569175272769}
-  - component: {fileID: 123262569175272798}
-  - component: {fileID: 984210399439022856}
-  - component: {fileID: 6223049086613821401}
+  - component: {fileID: 4081251542422255219}
+  - component: {fileID: 4049741180005536085}
+  - component: {fileID: 4036287599029469456}
+  - component: {fileID: 6916486466248698002}
   m_Layer: 0
   m_Name: FighterShip
   m_TagString: Untagged
@@ -32,12 +33,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 118743644130670162}
-  - {fileID: 6411922521972219711}
-  - {fileID: 6774148418241192330}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &123262569175272798
+--- !u!114 &4081251542422255219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123262569175272768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8830a769929254243b41afdeea6a9855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4049741180005536085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,7 +75,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 984210399439022856}
+      - m_Target: {fileID: 4081251542422255219}
         m_TargetAssemblyTypeName: InputCntrl, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -77,26 +88,14 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: d05bf281-dc4d-48e7-b2ae-e47934d9e34e
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionName: Player/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 984210399439022856}
-        m_TargetAssemblyTypeName: InputCntrl, Assembly-CSharp
-        m_MethodName: OnLook
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: bfe2f154-1718-41a3-9271-5093a2f14987
-    m_ActionName: Player/Look[/Mouse/delta]
+    m_ActionName: Player/Look[/DualShock4GamepadHID/rightStick,/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 984210399439022856}
+      - m_Target: {fileID: 4081251542422255219}
         m_TargetAssemblyTypeName: InputCntrl, Assembly-CSharp
         m_MethodName: OnFire
         m_Mode: 0
@@ -109,19 +108,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 6a57a47a-8afe-4cf1-a06d-a96c26888bed
-    m_ActionName: Player/Fire[/Mouse/leftButton]
+    m_ActionName: Player/Fire[/DualShock4GamepadHID/rightTrigger,/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 903a5cff-333a-4960-a35e-85d531ff3124
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionName: UI/Navigate[/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/rightStick/right,/DualShock4GamepadHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 782d70af-0d69-43ee-bc31-af29bd93d2bb
-    m_ActionName: UI/Submit[/Keyboard/enter]
+    m_ActionName: UI/Submit[/Keyboard/enter,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: fd5dd3e8-3491-423e-ba7c-3e011c6de185
-    m_ActionName: UI/Cancel[/Keyboard/escape]
+    m_ActionName: UI/Cancel[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c13f7020-1c1e-4b86-a5fb-9fcf9e510e0e
@@ -155,19 +154,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &984210399439022856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123262569175272768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8830a769929254243b41afdeea6a9855, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6223049086613821401
+--- !u!114 &4036287599029469456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,12 +167,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: ad9d7c3aaf677644ea4176be8123d070, type: 2}
-  inputCntrl: {fileID: 984210399439022856}
+  inputCntrl: {fileID: 4081251542422255219}
   missilePrefab: {fileID: 3708117170058766710, guid: 36a451a61ec280c49ad6f2c3b068e1d4, type: 3}
   muzzlePoint:
   - {fileID: 6411922521972219711}
   - {fileID: 6774148418241192330}
   cameraObject: {fileID: 0}
+--- !u!65 &6916486466248698002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123262569175272768}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 30.085047, y: 5.322583, z: 21.906847}
+  m_Center: {x: -0.000005722046, y: 0.00000059604645, z: 0.000002861023}
 --- !u!1 &123358783830430060
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +216,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6411922521972219711}
+  - {fileID: 6774148418241192330}
   m_Father: {fileID: 123262569175272769}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -307,13 +309,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2332060948682685950}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.22, y: -1.05, z: 11.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 123262569175272769}
-  m_RootOrder: 1
+  m_Father: {fileID: 118743644130670162}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4385852758365637835
 GameObject:
@@ -338,11 +340,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4385852758365637835}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.23, y: -1.06, z: 11.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 123262569175272769}
-  m_RootOrder: 2
+  m_Father: {fileID: 118743644130670162}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

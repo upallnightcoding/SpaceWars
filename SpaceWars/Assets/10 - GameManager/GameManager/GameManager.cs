@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fighterPrefab;
     [SerializeField] private GameObject enemyPrefab;
 
+    private EnemyManager enemyManager = null;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        enemyManager = GetComponent<EnemyManager>();
     }
 
     // Update is called once per frame
@@ -21,9 +23,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        GameObject fighter = Instantiate(fighterPrefab, new Vector3(), Quaternion.identity);
-
-        GameObject enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
-        enemy.GetComponentInChildren<EnemyFighterCntrl>().StartGame(fighter.transform, new Vector3(0.0f, 0.0f, 30.0f));
+        enemyManager.StartGame(fighterPrefab, enemyPrefab);
     }
 }

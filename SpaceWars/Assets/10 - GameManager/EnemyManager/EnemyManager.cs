@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private Transform fighter;
     [SerializeField] private GameObject enemyShipPrefab;
 
     private float distance = 50.0f;
@@ -15,12 +14,12 @@ public class EnemyManager : MonoBehaviour
         
     }
 
-    public void StartGame(Transform fighter)
+    public void StartGame(GameObject fighterPrefab, GameObject enemyPrefab)
     {
-        Vector3 direction = (new Vector3() - new Vector3(0.0f, 0.0f, distance)).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //GameObject go = Instantiate(enemyShipPrefab, new Vector3(0.0f, 0.0f, distance), targetRotation);
-        //go.GetComponent<EnemyFighterCntrl>().StartGame(fighter);
+        GameObject fighter = Instantiate(fighterPrefab, new Vector3(), Quaternion.identity);
+
+        GameObject enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
+        enemy.GetComponent<EnemyFighterCntrl>().StartGame(fighter.transform, new Vector3(0.0f, 0.0f, 30.0f));
     }
 
     // Update is called once per frame

@@ -6,10 +6,13 @@ using TMPro;
 
 public class UiCntrl : MonoBehaviour
 {
-    [SerializeField] private Slider sliderAmmo;
-    [SerializeField] private Image sliderAmmoColor;
-    [SerializeField] private TMP_Text ammoText;
-    
+    [SerializeField] private Slider fighterAmmoSlider;
+    [SerializeField] private Image fighterAmmoColor;
+    [SerializeField] private TMP_Text fighterAmmoText;
+
+    [SerializeField] private Slider fighterHealthSlider;
+    [SerializeField] private TMP_Text fighterHealthText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,12 @@ public class UiCntrl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void UpdateFighterHealth(float fraction)
+    {
+        fighterHealthSlider.value = fraction;
+        fighterHealthText.text = ((int)(fraction * 100)).ToString() + "%";
     }
 
     public void UpdateAmmo(float fraction)
@@ -34,20 +43,22 @@ public class UiCntrl : MonoBehaviour
 
     private void ShowAmmoPercentage(float fraction, Color color)
     {
-        sliderAmmoColor.color = color;
-        sliderAmmo.value = fraction;
-        ammoText.text = ((int)(fraction * 100)).ToString() + "%";
+        fighterAmmoColor.color = color;
+        fighterAmmoSlider.value = fraction;
+        fighterAmmoText.text = ((int)(fraction * 100)).ToString() + "%";
     }
 
     private void OnEnable()
     {
         EventManager.Instance.OnUpdateAmmo += UpdateAmmo;
         EventManager.Instance.OnReloadAmmo += ReLoadAmmo;
+        EventManager.Instance.OnUpdateFighterHealth += UpdateFighterHealth;
     }
 
     private void OnDisable()
     {
         EventManager.Instance.OnUpdateAmmo -= UpdateAmmo;
         EventManager.Instance.OnReloadAmmo -= ReLoadAmmo;
+        EventManager.Instance.OnUpdateFighterHealth -= UpdateFighterHealth;
     }
 }
