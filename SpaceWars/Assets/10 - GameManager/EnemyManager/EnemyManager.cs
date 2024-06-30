@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
         
     }
 
-    public void StartGame(GameObject fighterPrefab, GameObject enemyPrefab)
+    public GameObject StartGame(GameObject fighterPrefab, GameObject enemyPrefab)
     {
         GameObject fighter = Instantiate(fighterPrefab, new Vector3(), Quaternion.identity);
         GameObject enemy = null;
@@ -24,6 +24,8 @@ public class EnemyManager : MonoBehaviour
 
         enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
         enemy.GetComponent<EnemyFighterCntrl>().StartGame(fighter.transform, new Vector3(0.0f, 0.0f, -30.0f));
+
+        return (fighter);
     }
 
     // Update is called once per frame

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fighterPrefab;
     [SerializeField] private GameObject enemyPrefab;
 
+    [SerializeField] private CameraCntrl cameraCntrl;
+
     private EnemyManager enemyManager = null;
 
     // Start is called before the first frame update
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        enemyManager.StartGame(fighterPrefab, enemyPrefab);
+        GameObject fighter = enemyManager.StartGame(fighterPrefab, enemyPrefab);
+
+        cameraCntrl.StartGame(fighter.transform);
     }
 }
