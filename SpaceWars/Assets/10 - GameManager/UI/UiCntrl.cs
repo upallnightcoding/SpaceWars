@@ -13,6 +13,8 @@ public class UiCntrl : MonoBehaviour
     [SerializeField] private Slider fighterHealthSlider;
     [SerializeField] private TMP_Text fighterHealthText;
 
+    [SerializeField] private GameObject youreDeadText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,11 @@ public class UiCntrl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void DisplayYoureDead()
+    {
+        youreDeadText.SetActive(true);
     }
 
     public void UpdateFighterHealth(float fraction)
@@ -53,6 +60,7 @@ public class UiCntrl : MonoBehaviour
         EventManager.Instance.OnUpdateAmmo += UpdateAmmo;
         EventManager.Instance.OnReloadAmmo += ReLoadAmmo;
         EventManager.Instance.OnUpdateFighterHealth += UpdateFighterHealth;
+        EventManager.Instance.OnDisplayYoureDead += DisplayYoureDead;
     }
 
     private void OnDisable()
@@ -60,5 +68,6 @@ public class UiCntrl : MonoBehaviour
         EventManager.Instance.OnUpdateAmmo -= UpdateAmmo;
         EventManager.Instance.OnReloadAmmo -= ReLoadAmmo;
         EventManager.Instance.OnUpdateFighterHealth -= UpdateFighterHealth;
+        EventManager.Instance.OnDisplayYoureDead -= DisplayYoureDead;
     }
 }

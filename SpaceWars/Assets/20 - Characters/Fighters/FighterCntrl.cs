@@ -21,7 +21,7 @@ public class FighterCntrl : MonoBehaviour
     private int ammoCount = 100;
     private float reloadTime = 3.0f;
 
-    private int health = 50;
+    private float health = 50;
 
     //private Vector2 Move { get; set; }
     //private bool Fire { get; set; }
@@ -153,9 +153,14 @@ public class FighterCntrl : MonoBehaviour
         Debug.Log("Fighter Cntrl ...");
         if (collision.gameObject.TryGetComponent<EnemyAmmoCntrl>(out EnemyAmmoCntrl ammo))
         {
-            health -= 5;
+            health -= 2.0f;
 
             EventManager.Instance.InvokeOnUpdateFighterHealth(health / 100.0f);
+
+            if (health <= 0.0f)
+            {
+                EventManager.Instance.InvokeOnDisplayYoureDead();
+            }
         }
     }
 }

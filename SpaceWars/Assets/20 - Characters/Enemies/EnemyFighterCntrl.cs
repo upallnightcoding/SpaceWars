@@ -14,7 +14,7 @@ public class EnemyFighterCntrl : MonoBehaviour
 
     private bool readyToFire = true;
 
-    private int ammoCount = 50;
+    private int ammoCount = 0;
 
     private float speed = 15.0f;
 
@@ -54,8 +54,22 @@ public class EnemyFighterCntrl : MonoBehaviour
     {
         if (readyToFire)
         {
-            StartCoroutine(FireMissle());
+            if (ammoCount > 0)
+            {
+                StartCoroutine(FireMissle());
+            } else
+            {
+                StartCoroutine(ReLoad());
+            }
         }
+    }
+
+    private IEnumerator ReLoad()
+    {
+        readyToFire = false;
+        yield return new WaitForSeconds(2.0f);
+        ammoCount = 10;
+        readyToFire = true;
     }
 
     private IEnumerator FireMissle()
