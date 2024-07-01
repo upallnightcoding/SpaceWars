@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class EnemyFighterCntrl : MonoBehaviour
 {
+    [SerializeField] private EnemyFighterSO enemyFighter;
     [SerializeField] private Transform[] muzzlePoint;
-    [SerializeField] private GameObject missilePrefab;
-    [SerializeField] private GameObject explosionPreFab;
+
+    private GameObject missilePrefab;
+    private GameObject explosionPreFab;
+    private int maxAmmoCount;
+    private float topSpeed;
 
     private int health = 50;
 
@@ -15,14 +19,16 @@ public class EnemyFighterCntrl : MonoBehaviour
     private bool readyToFire = true;
 
     private int ammoCount = 0;
-
-    private float speed = 15.0f;
-
     private Transform fighter = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        missilePrefab = enemyFighter.missilePrefab;
+        explosionPreFab = enemyFighter.explosionPreFab;
+        maxAmmoCount = enemyFighter.maxAmmoCount;
+        topSpeed = enemyFighter.topSpeed;
+
         nGuns = muzzlePoint.Length;
     }
 
@@ -44,7 +50,7 @@ public class EnemyFighterCntrl : MonoBehaviour
         if (fighter != null)
         {
             Vector3 direction = (fighter.position - transform.position).normalized;
-            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+            transform.Translate(direction * topSpeed * Time.deltaTime, Space.World);
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.localRotation = targetRotation;
         }
@@ -68,7 +74,7 @@ public class EnemyFighterCntrl : MonoBehaviour
     {
         readyToFire = false;
         yield return new WaitForSeconds(2.0f);
-        ammoCount = 10;
+        ammoCount = maxAmmoCount;
         readyToFire = true;
     }
 
