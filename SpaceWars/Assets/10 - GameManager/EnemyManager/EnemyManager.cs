@@ -4,10 +4,56 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField] private GameData gameData;
+
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public GameObject GameLevel(int level)
+    {
+        GameObject fighter = null;
+
+        switch (level)
+        {
+            case 1:
+                fighter = CreateFighter(gameData.basicFighterPrefab);
+                CreateEnemyFighter(1, fighter, gameData.enemyFighterA01Prefab);
+                break;
+            case 2:
+                fighter = CreateFighter(gameData.basicFighterPrefab);
+                CreateEnemyFighter(3, fighter, gameData.enemyFighterA01Prefab);
+                break;
+            case 3:
+                fighter = CreateFighter(gameData.basicFighterPrefab);
+                CreateEnemyFighter(5, fighter, gameData.enemyFighterA01Prefab);
+                break;
+        }
+
+        return (fighter);
+    }
+
+    /**
+     * CreateFighter() -
+     */
+    private GameObject CreateFighter(GameObject fighterPrefab)
+    {
+        return(Instantiate(fighterPrefab, new Vector3(), Quaternion.identity));
+    }
+
+    /**
+     * CreateEnemyFighter() - 
+     */
+    private void CreateEnemyFighter(int n, GameObject fighter, GameObject enemyPrefab)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
+            Vector2 p = Random.insideUnitCircle * gameData.ringSize;
+            enemy.GetComponent<EnemyFighterCntrl>().StartGame(fighter.transform, new Vector3(p.x, 0.0f, p.y));
+        }
     }
 
     public GameObject StartGame(GameObject fighterPrefab, GameObject enemyPrefab)

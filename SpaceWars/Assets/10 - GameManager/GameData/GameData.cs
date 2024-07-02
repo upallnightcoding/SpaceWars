@@ -7,6 +7,15 @@ public class GameData : ScriptableObject
 {
     [Header("Game Attributes")]
     public FlightMode flightMode;
+
+    [Header("Player Fighter")]
+    public GameObject basicFighterPrefab;
+
+    [Header("Enemy Fighter")]
+    public GameObject enemyFighterA01Prefab;
+
+    [Header("Level Attributes")]
+    public float ringSize;
 }
 
 public enum FlightMode

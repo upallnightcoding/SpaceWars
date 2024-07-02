@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        GameObject fighter = enemyManager.StartGame(fighterPrefab, enemyPrefab);
+        GameObject fighter = enemyManager.GameLevel(3);
 
         cameraCntrl.StartGame(fighter.transform);
     }
