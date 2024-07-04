@@ -16,3 +16,7 @@ MonoBehaviour:
   basicFighterPrefab: {fileID: 123262569175272768, guid: fef724c9de3e8c54f81a3add77acd02a, type: 3}
   enemyFighterA01Prefab: {fileID: 8304138371217006731, guid: d0923265c01b5ff4d8b95ab755b7812d, type: 3}
   ringSize: 100
+  UpgradeCameraPosition: {x: 0, y: 20, z: -35}
+  UpgredeCameraRotation: {x: 30, y: 0, z: 0}
+  GamePlayCameraPosition: {x: 0, y: 250, z: 0}
+  GamePlayCameraRotation: {x: 90, y: 0, z: 0}
