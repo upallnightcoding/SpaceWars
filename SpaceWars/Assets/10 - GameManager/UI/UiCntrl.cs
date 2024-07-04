@@ -27,6 +27,11 @@ public class UiCntrl : MonoBehaviour
         
     }
 
+    public void StartNewGame()
+    {
+        Debug.Log("UiCntrl - Start New Game");
+    }
+
     public void DisplayYoureDead()
     {
         youreDeadText.SetActive(true);

@@ -23,9 +23,6 @@ public class FighterCntrl : MonoBehaviour
 
     private float health = 50;
 
-    //private Vector2 Move { get; set; }
-    //private bool Fire { get; set; }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -150,7 +147,6 @@ public class FighterCntrl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Fighter Cntrl ...");
         if (collision.gameObject.TryGetComponent<EnemyAmmoCntrl>(out EnemyAmmoCntrl ammo))
         {
             health -= 2.0f;

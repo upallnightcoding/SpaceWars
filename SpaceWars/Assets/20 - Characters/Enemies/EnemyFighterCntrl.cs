@@ -30,6 +30,8 @@ public class EnemyFighterCntrl : MonoBehaviour
         topSpeed = enemyFighter.topSpeed;
 
         nGuns = muzzlePoint.Length;
+
+        StartCoroutine(Resolve());
     }
 
     // Update is called once per frame
@@ -92,6 +94,27 @@ public class EnemyFighterCntrl : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
         readyToFire = true;
+    }
+
+    /**
+     * Resolve() - 
+     */
+    private IEnumerator Resolve()
+    {
+        Material material = GetComponentInChildren<Renderer>().material;
+
+        float elapseTime = 0.0f;
+        float resolveDuration = 5.0f;
+
+        while (elapseTime < resolveDuration)
+        {
+            elapseTime += Time.deltaTime;
+            float dissolve = Mathf.Lerp(0.0f, 1.0f, 1-(elapseTime / resolveDuration));
+            Debug.Log($"Dissolve: {dissolve}");
+            material.SetFloat("_Dissolve", dissolve);
+
+            yield return null;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
