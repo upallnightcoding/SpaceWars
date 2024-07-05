@@ -15,6 +15,10 @@ public class UiCntrl : MonoBehaviour
 
     [SerializeField] private GameObject youreDeadText;
 
+    [SerializeField] private GameObject mainMenuPanel;
+    [SerializeField] private GameObject gamePlayPanel;
+    [SerializeField] private GameObject levelUpPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +31,30 @@ public class UiCntrl : MonoBehaviour
         
     }
 
-    public void StartNewGame()
+    public void NewGame()
     {
-        Debug.Log("UiCntrl - Start New Game");
+        EventManager.Instance.InvokeOnDisplayNewGamePanel();
+
+        DisplayLevelUpPanel();
+    }
+
+    public void PlayRound()
+    {
+        EventManager.Instance.InvokeOnPlayRound();
+    }
+
+    public void DisplayPlayRoundPanel()
+    {
+        mainMenuPanel.SetActive(false);
+        gamePlayPanel.SetActive(true);
+        levelUpPanel.SetActive(false);
+    }
+
+    public void DisplayLevelUpPanel()
+    {
+        mainMenuPanel.SetActive(false);
+        gamePlayPanel.SetActive(false);
+        levelUpPanel.SetActive(true);
     }
 
     public void DisplayYoureDead()
@@ -66,6 +91,7 @@ public class UiCntrl : MonoBehaviour
         EventManager.Instance.OnReloadAmmo += ReLoadAmmo;
         EventManager.Instance.OnUpdateFighterHealth += UpdateFighterHealth;
         EventManager.Instance.OnDisplayYoureDead += DisplayYoureDead;
+        EventManager.Instance.OnDisplayPlayRoundPanel += DisplayPlayRoundPanel;
     }
 
     private void OnDisable()
@@ -74,5 +100,6 @@ public class UiCntrl : MonoBehaviour
         EventManager.Instance.OnReloadAmmo -= ReLoadAmmo;
         EventManager.Instance.OnUpdateFighterHealth -= UpdateFighterHealth;
         EventManager.Instance.OnDisplayYoureDead -= DisplayYoureDead;
+        EventManager.Instance.OnDisplayPlayRoundPanel -= DisplayPlayRoundPanel;
     }
 }

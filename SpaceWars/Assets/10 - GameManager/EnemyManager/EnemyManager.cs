@@ -12,35 +12,22 @@ public class EnemyManager : MonoBehaviour
         
     }
 
-    public GameObject GameLevel(int level)
+    public GameObject GameLevel(int level, GameObject fighter)
     {
-        GameObject fighter = null;
-
         switch (level)
         {
             case 1:
-                fighter = CreateFighter(gameData.basicFighterPrefab);
                 CreateEnemyFighter(1, fighter, gameData.enemyFighterA01Prefab);
                 break;
             case 2:
-                fighter = CreateFighter(gameData.basicFighterPrefab);
                 CreateEnemyFighter(3, fighter, gameData.enemyFighterA01Prefab);
                 break;
             case 3:
-                fighter = CreateFighter(gameData.basicFighterPrefab);
                 CreateEnemyFighter(5, fighter, gameData.enemyFighterA01Prefab);
                 break;
         }
 
         return (fighter);
-    }
-
-    /**
-     * CreateFighter() -
-     */
-    private GameObject CreateFighter(GameObject fighterPrefab)
-    {
-        return(Instantiate(fighterPrefab, new Vector3(), Quaternion.identity));
     }
 
     /**
