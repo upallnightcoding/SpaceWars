@@ -14,4 +14,6 @@ public class EnemyFighterSO : ScriptableObject
     public int maxAmmoCount;
 
     public float topSpeed;
+
+    public long xp;
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   explosionPreFab: {fileID: 8856127284323510698, guid: e0bae1fa58bef3b4893048eeb31b3444, type: 3}
   maxAmmoCount: 10
   topSpeed: 15
+  xp: 100

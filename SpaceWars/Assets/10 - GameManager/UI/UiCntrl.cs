@@ -19,17 +19,20 @@ public class UiCntrl : MonoBehaviour
     [SerializeField] private GameObject gamePlayPanel;
     [SerializeField] private GameObject levelUpPanel;
 
+    [SerializeField] private TMP_Text gamePlayXpText;
+    [SerializeField] private TMP_Text levelUpXpText;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /******************/
+    /** Menu Options **/
+    /******************/
 
     public void NewGame()
     {
@@ -41,6 +44,17 @@ public class UiCntrl : MonoBehaviour
     public void PlayRound()
     {
         EventManager.Instance.InvokeOnPlayRound();
+    }
+
+    public void LoadGame()
+    {
+        EventManager.Instance.InvokeOnDisplayLoadGamePanel();
+    }
+
+    public void UpdateXP(long value)
+    {
+        gamePlayXpText.text = value.ToString() + " XP";
+        levelUpXpText.text = value.ToString() + " XP";
     }
 
     public void DisplayPlayRoundPanel()

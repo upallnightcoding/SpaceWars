@@ -125,6 +125,7 @@ public class EnemyFighterCntrl : MonoBehaviour
             if (health <= 0)
             {
                 Instantiate(explosionPreFab, transform.position, Quaternion.identity);
+                EventManager.Instance.InvokeOnUpdateXP(100);
                 Destroy(gameObject);
             }
 

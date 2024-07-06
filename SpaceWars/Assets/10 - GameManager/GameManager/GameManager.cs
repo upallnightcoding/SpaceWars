@@ -7,11 +7,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject fighterPrefab;
     [SerializeField] private GameObject enemyPrefab;
 
+    [SerializeField] private UiCntrl uiCntrl;
+
     [SerializeField] private CameraCntrl cameraCntrl;
 
     private EnemyManager enemyManager = null;
 
     private Transform cameraTransform;
+
+    private GameObject fighter = null;
+
+    private long xp = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -21,29 +27,35 @@ public class GameManager : MonoBehaviour
         cameraTransform = Camera.main.transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void MainMenu()
-    {
-
-    }
-
     public void NewGame()
     {
-        GameObject fighter = CreateFighter(fighterPrefab);
+        fighter = CreateFighter(fighterPrefab);
 
         //cameraCntrl.StartGame(fighter.transform);
 
         StartCoroutine(RotateFighter(fighter));
+
+
+        EventManager.Instance.InvokeOnUpdateXP(0);
     }
 
     public void PlayRound()
     {
         StartCoroutine(SetupPlayCamera());
+
+        enemyManager.GameLevel(2, fighter);
+    }
+
+    public void LoadGame()
+    {
+
+    }
+
+    public void UpdateXP(long value)
+    {
+        xp += value;
+
+        uiCntrl.UpdateXP(xp);
     }
 
     /**
@@ -54,6 +66,9 @@ public class GameManager : MonoBehaviour
         return (Instantiate(fighterPrefab, new Vector3(), Quaternion.identity));
     }
 
+    /**
+     * RotateFighter() - 
+     */
     private IEnumerator RotateFighter(GameObject fighter)
     {
         float timing = 0.0f;
@@ -99,11 +114,15 @@ public class GameManager : MonoBehaviour
     {
         EventManager.Instance.OnPlayRound += PlayRound;
         EventManager.Instance.OnDisplayNewGamePanel += NewGame;
+        EventManager.Instance.OnDisplayLoadGamePanel += LoadGame;
+        EventManager.Instance.OnUpdateXP += UpdateXP;
     }
 
     private void OnDisable()
     {
         EventManager.Instance.OnPlayRound -= PlayRound;
         EventManager.Instance.OnDisplayNewGamePanel -= NewGame;
+        EventManager.Instance.OnDisplayLoadGamePanel -= LoadGame;
+        EventManager.Instance.OnUpdateXP -= UpdateXP;
     }
 }
