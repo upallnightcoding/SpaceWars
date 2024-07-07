@@ -35,15 +35,15 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(RotateFighter(fighter));
 
-
         EventManager.Instance.InvokeOnUpdateXP(0);
     }
 
-    public void PlayRound()
+    /**
+     * EngageFighter() - 
+     */
+    public void EngageFighter()
     {
-        StartCoroutine(SetupPlayCamera());
-
-        enemyManager.GameLevel(2, fighter);
+        StartCoroutine(StartFighterEngagement());
     }
 
     public void LoadGame()
@@ -87,11 +87,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SetupPlayCamera()
+    private IEnumerator StartFighterEngagement()
     {
         float timing = 0.0f;
         float transitionTime = 2.0f;
 
+        // Move Camera Into Top/Down Position
         while (timing <= transitionTime)
         {
             float delta = timing / transitionTime;
@@ -107,12 +108,28 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        EventManager.Instance.InvokeOnDisplayPlayRoundPanel();
+        // Display Engagement Panel
+        uiCntrl.DisplayEngagePanel();
+
+        // Start 5 Second Engagement Count Down
+        transitionTime = 6.0f;
+        yield return null;
+
+        while (transitionTime > 0.0f)
+        {
+            uiCntrl.DisplayEngageCountDown((int)transitionTime);
+
+            yield return null;
+
+            transitionTime -= Time.deltaTime;
+        }
+
+        uiCntrl.HideEngageCountDown();
+        enemyManager.GameLevel(2, fighter);
     }
 
     private void OnEnable()
     {
-        EventManager.Instance.OnPlayRound += PlayRound;
         EventManager.Instance.OnDisplayNewGamePanel += NewGame;
         EventManager.Instance.OnDisplayLoadGamePanel += LoadGame;
         EventManager.Instance.OnUpdateXP += UpdateXP;
@@ -120,7 +137,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.Instance.OnPlayRound -= PlayRound;
         EventManager.Instance.OnDisplayNewGamePanel -= NewGame;
         EventManager.Instance.OnDisplayLoadGamePanel -= LoadGame;
         EventManager.Instance.OnUpdateXP -= UpdateXP;

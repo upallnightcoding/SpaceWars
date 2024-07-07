@@ -7,8 +7,8 @@ public class EnemyFighterCntrl : MonoBehaviour
     [SerializeField] private EnemyFighterSO enemyFighter;
     [SerializeField] private Transform[] muzzlePoint;
 
-    private GameObject missilePrefab;
-    private GameObject explosionPreFab;
+    private GameObject missilePrefab = null;
+    private GameObject explosionPreFab = null;
     private int maxAmmoCount;
     private float topSpeed;
 
@@ -104,13 +104,12 @@ public class EnemyFighterCntrl : MonoBehaviour
         Material material = GetComponentInChildren<Renderer>().material;
 
         float elapseTime = 0.0f;
-        float resolveDuration = 5.0f;
+        float resolveDuration = 1.0f;
 
         while (elapseTime < resolveDuration)
         {
             elapseTime += Time.deltaTime;
             float dissolve = Mathf.Lerp(0.0f, 1.0f, 1-(elapseTime / resolveDuration));
-            Debug.Log($"Dissolve: {dissolve}");
             material.SetFloat("_Dissolve", dissolve);
 
             yield return null;
@@ -124,8 +123,14 @@ public class EnemyFighterCntrl : MonoBehaviour
 
             if (health <= 0)
             {
-                Instantiate(explosionPreFab, transform.position, Quaternion.identity);
+                if (explosionPreFab)
+                {
+                    Instantiate(explosionPreFab, transform.position, Quaternion.identity);
+                }
+
                 EventManager.Instance.InvokeOnUpdateXP(100);
+                EventManager.Instance.InvokeOnDestoryedEnemy();
+
                 Destroy(gameObject);
             }
 

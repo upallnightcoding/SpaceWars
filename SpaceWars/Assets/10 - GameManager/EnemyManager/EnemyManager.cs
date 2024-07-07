@@ -6,12 +6,18 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private GameData gameData;
 
+    private int nEnemies = 0;
+    private int nEnimiesDestoryed = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    /**
+     * GameLevel() - 
+     */
     public GameObject GameLevel(int level, GameObject fighter)
     {
         switch (level)
@@ -30,11 +36,23 @@ public class EnemyManager : MonoBehaviour
         return (fighter);
     }
 
+    public void DestoryedEnemy()
+    {
+        Debug.Log("Destory Enemy ...");
+
+        if (++nEnimiesDestoryed == nEnemies)
+        {
+
+        }
+    }
+
     /**
      * CreateEnemyFighter() - 
      */
     private void CreateEnemyFighter(int n, GameObject fighter, GameObject enemyPrefab)
     {
+        nEnemies = n;
+
         for (int i = 0; i < n; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
@@ -43,10 +61,22 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public GameObject StartGame(GameObject fighterPrefab, GameObject enemyPrefab)
+    private void OnDisable()
+    {
+        EventManager.Instance.OnDestoryedEnemy -= DestoryedEnemy;
+    }
+
+    private void OnEnable()
+    {
+        EventManager.Instance.OnDestoryedEnemy += DestoryedEnemy;
+    }
+
+    /**
+     * StartGame() - 
+     */
+    /*public GameObject StartGame(GameObject fighterPrefab, GameObject enemyPrefab)
     {
         GameObject fighter = Instantiate(fighterPrefab, new Vector3(), Quaternion.identity);
-        GameObject enemy = null;
 
         int n = 4;
         float delt = 360.0f / n;
@@ -58,10 +88,10 @@ public class EnemyManager : MonoBehaviour
             float y = 0.0f;
             float z = distance * Mathf.Sin(degree * 3.145f / 180.0f);
 
-            enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
             enemy.GetComponent<EnemyFighterCntrl>().StartGame(fighter.transform, new Vector3(x, y, z));
         }
 
         return (fighter);
-    }
+    }*/
 }

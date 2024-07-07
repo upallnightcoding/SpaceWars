@@ -21,24 +21,23 @@ public class EventManager
 
     // UI/UX Menu Panel Events
     //========================
-    public event Action OnDisplayPlayRoundPanel = delegate { };
     public event Action OnDisplayNewGamePanel = delegate { };
     public event Action OnDisplayLoadGamePanel = delegate { };
     public event Action<long> OnUpdateXP = delegate { };
 
-    public void InvokeOnDisplayPlayRoundPanel() => OnDisplayPlayRoundPanel.Invoke();
     public void InvokeOnDisplayNewGamePanel() => OnDisplayNewGamePanel.Invoke();
     public void InvokeOnDisplayLoadGamePanel() => OnDisplayLoadGamePanel.Invoke();
     public void InvokeOnUpdateXP(long value) => OnUpdateXP.Invoke(value);
 
-    public event Action OnPlayRound = delegate { };
-
     public event Action<float> OnUpdateFighterHealth = delegate { };
-
-    public void InvokeOnPlayRound() => OnPlayRound.Invoke();
 
     public void InvokeOnUpdateFighterHealth(float fraction) => OnUpdateFighterHealth.Invoke(fraction);
 
+    public event Action OnDestoryedEnemy = delegate { };
+    public void InvokeOnDestoryedEnemy() => OnDestoryedEnemy.Invoke();
+
+    // Event Manager Singleton
+    //========================
     public static EventManager Instance
     {
         get

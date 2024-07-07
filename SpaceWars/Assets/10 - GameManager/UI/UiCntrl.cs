@@ -13,37 +13,48 @@ public class UiCntrl : MonoBehaviour
     [SerializeField] private Slider fighterHealthSlider;
     [SerializeField] private TMP_Text fighterHealthText;
 
-    [SerializeField] private GameObject youreDeadText;
+    [SerializeField] private GameObject yourDeadBanner;
+    [SerializeField] private GameObject endEngagementBanner;
 
     [SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject gamePlayPanel;
+    [SerializeField] private GameObject engagePanel;
     [SerializeField] private GameObject levelUpPanel;
 
     [SerializeField] private TMP_Text gamePlayXpText;
     [SerializeField] private TMP_Text levelUpXpText;
 
-    
+    [SerializeField] private TMP_Text engageCountDownText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject engageCountDown;
 
     /******************/
     /** Menu Options **/
     /******************/
+
+    public void HideEngageCountDown()
+        => engageCountDown.SetActive(false);
+
+    public void ShowEndEngagementBanner()
+        => endEngagementBanner.SetActive(true);
+
+    public void DisplayEngageCountDown(int count)
+    {
+        if (count != 0)
+        {
+            engageCountDownText.fontSize = 200;
+            engageCountDownText.text = count.ToString();
+        } else
+        {
+            engageCountDownText.fontSize = 52;
+            engageCountDownText.text = "Engage";
+        }
+    }
 
     public void NewGame()
     {
         EventManager.Instance.InvokeOnDisplayNewGamePanel();
 
         DisplayLevelUpPanel();
-    }
-
-    public void PlayRound()
-    {
-        EventManager.Instance.InvokeOnPlayRound();
     }
 
     public void LoadGame()
@@ -57,23 +68,23 @@ public class UiCntrl : MonoBehaviour
         levelUpXpText.text = value.ToString() + " XP";
     }
 
-    public void DisplayPlayRoundPanel()
+    public void DisplayEngagePanel()
     {
         mainMenuPanel.SetActive(false);
-        gamePlayPanel.SetActive(true);
+        engagePanel.SetActive(true);
         levelUpPanel.SetActive(false);
     }
 
     public void DisplayLevelUpPanel()
     {
         mainMenuPanel.SetActive(false);
-        gamePlayPanel.SetActive(false);
+        engagePanel.SetActive(false);
         levelUpPanel.SetActive(true);
     }
 
     public void DisplayYoureDead()
     {
-        youreDeadText.SetActive(true);
+        yourDeadBanner.SetActive(true);
     }
 
     public void UpdateFighterHealth(float fraction)
@@ -105,7 +116,7 @@ public class UiCntrl : MonoBehaviour
         EventManager.Instance.OnReloadAmmo += ReLoadAmmo;
         EventManager.Instance.OnUpdateFighterHealth += UpdateFighterHealth;
         EventManager.Instance.OnDisplayYoureDead += DisplayYoureDead;
-        EventManager.Instance.OnDisplayPlayRoundPanel += DisplayPlayRoundPanel;
+        //EventManager.Instance.OnDisplayEngagePanel += DisplayEngagePanel;
     }
 
     private void OnDisable()
@@ -114,6 +125,6 @@ public class UiCntrl : MonoBehaviour
         EventManager.Instance.OnReloadAmmo -= ReLoadAmmo;
         EventManager.Instance.OnUpdateFighterHealth -= UpdateFighterHealth;
         EventManager.Instance.OnDisplayYoureDead -= DisplayYoureDead;
-        EventManager.Instance.OnDisplayPlayRoundPanel -= DisplayPlayRoundPanel;
+        //EventManager.Instance.OnDisplayEngagePanel -= DisplayEngagePanel;
     }
 }
