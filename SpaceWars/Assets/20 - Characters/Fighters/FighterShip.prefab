@@ -90,7 +90,19 @@ MonoBehaviour:
     m_ActionId: d05bf281-dc4d-48e7-b2ae-e47934d9e34e
     m_ActionName: Player/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4081251542422255219}
+        m_TargetAssemblyTypeName: InputCntrl, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bfe2f154-1718-41a3-9271-5093a2f14987
     m_ActionName: Player/Look[/DualShock4GamepadHID/rightStick,/Mouse/delta]
   - m_PersistentCalls:

@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     [Header("Game Attributes")]
-    public FlightMode flightMode;
+    public InputMode inputMode;
 
     [Header("Player Fighter")]
     public GameObject basicFighterPrefab;
@@ -26,8 +26,8 @@ public class GameData : ScriptableObject
     public Vector3 GamePlayCameraRotation;
 }
 
-public enum FlightMode
+public enum InputMode
 {
-    WITH_YAW,
-    WITHOUT_YAW
+    KEYBOARD,
+    CONTROLLER
 }

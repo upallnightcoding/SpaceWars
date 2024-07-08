@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FighterCntrl : MonoBehaviour
 {
@@ -29,17 +30,25 @@ public class FighterCntrl : MonoBehaviour
         nGuns = muzzlePoint.Length;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 move = inputCntrl.Move;
         bool fire = inputCntrl.Fire;
+        Vector2 look = inputCntrl.Look;
 
-        MoveFighter(move, Time.deltaTime);
-        FireWeapon(fire);
+        switch (gameData.inputMode)
+        {
+            case InputMode.CONTROLLER:
+                MoveFighterController(move, Time.deltaTime);
+                FireWeapon(fire);
+                break;
+            case InputMode.KEYBOARD:
+                MoveFighterKeyBoard(move, look, Time.deltaTime);
+                break;
+        }
     }
 
-    private void MoveFighter(Vector2 moveDirection, float dt)
+    /*private void MoveFighter(Vector2 moveDirection, float dt)
     {
         switch (gameData.flightMode)
         {
@@ -50,16 +59,46 @@ public class FighterCntrl : MonoBehaviour
                 MoveFighterWithYaw(moveDirection, dt);
                 break;
         }
+    }*/
+
+    private void MoveFighterKeyBoard(Vector2 move, Vector2 look, float dt)
+    {
+
+        float throddle = move.y;
+        float speed = 30.0f;
+        Vector3 direction = Vector3.zero;
+
+        Debug.Log($"MoveFighterKeyBoard ... {look}");
+        if (look != Vector2.zero)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(look);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Vector3 target = new Vector3(hit.point.x, 0.0f, hit.point.z);
+                direction = (target - transform.position).normalized;
+
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, 7.0f * dt);
+                transform.localRotation = playerRotation;
+            }
+        }
+
+        if (throddle > 0.0f)
+        {
+            transform.Translate(direction * speed * throddle * dt, Space.World);
+        }
+
+        //Debug.Log("Fighter Movement ...");
     }
 
-    private void MoveFighterWithoutYaw(Vector2 moveDirection, float dt)
+    private void MoveFighterController(Vector2 moveDirection, float dt)
     {
         float horizontalInput = moveDirection.x;
         float verticalInput = moveDirection.y;
 
-        Vector3 direction = new Vector3(moveDirection.x, 0.0f, moveDirection.y).normalized;
+        Vector3 direction = new Vector3(horizontalInput, 0.0f, verticalInput).normalized;
         float troddle = Mathf.Sqrt(verticalInput * verticalInput + horizontalInput * horizontalInput);
-        transform.Translate(direction * speed * troddle * Time.deltaTime, Space.World);
+        transform.Translate(direction * speed * troddle * dt, Space.World);
 
         if (direction != Vector3.zero)
         {
@@ -69,7 +108,7 @@ public class FighterCntrl : MonoBehaviour
         }
     }
 
-    private void MoveFighterWithYaw(Vector2 moveDirection, float dt)
+    /*private void MoveFighterWithYaw(Vector2 moveDirection, float dt)
     {
         float horizontalInput = moveDirection.x;
         float verticalInput = moveDirection.y;
@@ -91,7 +130,7 @@ public class FighterCntrl : MonoBehaviour
         angles = cameraObject.eulerAngles;
         angles.y = yaw;
         cameraObject.eulerAngles = angles;
-    }
+    }*/
 
     private void FireWeapon(bool fire)
     {

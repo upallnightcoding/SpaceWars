@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dad0a3b0680fe04b84e00927ea0515f, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  flightMode: 1
+  inputMode: 0
   basicFighterPrefab: {fileID: 123262569175272768, guid: fef724c9de3e8c54f81a3add77acd02a, type: 3}
   enemyFighterA01Prefab: {fileID: 8304138371217006731, guid: d0923265c01b5ff4d8b95ab755b7812d, type: 3}
   ringSize: 150

@@ -52,9 +52,13 @@ public class EnemyFighterCntrl : MonoBehaviour
         if (fighter != null)
         {
             Vector3 direction = (fighter.position - transform.position).normalized;
-            transform.Translate(direction * topSpeed * Time.deltaTime, Space.World);
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.localRotation = targetRotation;
+
+            if (direction != Vector3.zero)
+            {
+                transform.Translate(direction * topSpeed * Time.deltaTime, Space.World);
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.localRotation = targetRotation;
+            }
         }
     }
 
