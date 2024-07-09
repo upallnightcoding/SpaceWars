@@ -44,6 +44,7 @@ public class FighterCntrl : MonoBehaviour
                 break;
             case InputMode.KEYBOARD:
                 MoveFighterKeyBoard(move, look, Time.deltaTime);
+                FireWeapon(fire);
                 break;
         }
     }
@@ -64,11 +65,10 @@ public class FighterCntrl : MonoBehaviour
     private void MoveFighterKeyBoard(Vector2 move, Vector2 look, float dt)
     {
 
-        float throddle = move.y;
-        float speed = 30.0f;
+        float throttle = move.y;
+        float speed = gameData.fighterKeyboardSpeed;
         Vector3 direction = Vector3.zero;
 
-        Debug.Log($"MoveFighterKeyBoard ... {look}");
         if (look != Vector2.zero)
         {
             Ray ray = Camera.main.ScreenPointToRay(look);
@@ -83,12 +83,10 @@ public class FighterCntrl : MonoBehaviour
             }
         }
 
-        if (throddle > 0.0f)
+        if (throttle > 0.0f)
         {
-            transform.Translate(direction * speed * throddle * dt, Space.World);
+            transform.Translate(direction * speed * throttle * dt, Space.World);
         }
-
-        //Debug.Log("Fighter Movement ...");
     }
 
     private void MoveFighterController(Vector2 moveDirection, float dt)

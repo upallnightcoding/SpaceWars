@@ -10,12 +10,6 @@ public class InputCntrl : MonoBehaviour
 
     public bool Fire { get; private set; }
  
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // WASD Keys or Controller Left Stick
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -37,11 +31,6 @@ public class InputCntrl : MonoBehaviour
         {
             Look = Mouse.current.position.ReadValue();
         }
-
-        if (context.canceled)
-        {
-            Look = Vector2.zero;
-        }
     }
 
     // Right Mouse Button or Right Trigger Click
@@ -49,7 +38,7 @@ public class InputCntrl : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("OnFire ...");
+            Look = Mouse.current.position.ReadValue();
             Fire = true;
         }
 

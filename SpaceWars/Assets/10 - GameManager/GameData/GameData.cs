@@ -10,12 +10,15 @@ public class GameData : ScriptableObject
 
     [Header("Player Fighter")]
     public GameObject basicFighterPrefab;
+    public float fighterKeyboardSpeed;
 
     [Header("Enemy Fighter")]
     public GameObject enemyFighterA01Prefab;
 
-    [Header("Level Attributes")]
-    public float ringSize;
+    [Header("Environment Attributes")]
+    public float spaceSize;
+    public GameObject spaceCloudsPrefab;
+    public int nSpaceClouds;
 
     [Header("Upgrade Camera")]
     public Vector3 UpgradeCameraPosition;

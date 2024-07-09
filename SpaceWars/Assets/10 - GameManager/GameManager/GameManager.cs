@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         fighter = CreateFighter(fighterPrefab);
 
-        //cameraCntrl.StartGame(fighter.transform);
+        
 
         StartCoroutine(RotateFighter(fighter));
 
@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
 
         uiCntrl.HideEngageCountDown();
         //enemyManager.GameLevel(2, fighter);
+        cameraCntrl.StartGame(fighter.transform);
     }
 
     private void OnEnable()

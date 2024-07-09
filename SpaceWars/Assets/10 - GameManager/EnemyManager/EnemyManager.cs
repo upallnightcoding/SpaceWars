@@ -56,7 +56,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, new Vector3(), Quaternion.identity);
-            Vector2 p = Random.insideUnitCircle * gameData.ringSize;
+            Vector2 p = Random.insideUnitCircle * gameData.spaceSize;
             enemy.GetComponent<EnemyFighterCntrl>().StartGame(fighter.transform, new Vector3(p.x, 0.0f, p.y));
         }
     }
