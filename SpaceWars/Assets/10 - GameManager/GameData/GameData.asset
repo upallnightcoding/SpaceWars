@@ -17,8 +17,13 @@ MonoBehaviour:
   fighterKeyboardSpeed: 70
   enemyFighterA01Prefab: {fileID: 8304138371217006731, guid: d0923265c01b5ff4d8b95ab755b7812d, type: 3}
   spaceSize: 400
-  spaceCloudsPrefab: {fileID: 1106805267063408, guid: 2325110187a3df24ab95d62bcbcb723c, type: 3}
+  electricityPrefab: {fileID: 1997773235792374, guid: ca1b1da5e83888f49b3a1148500975b9, type: 3}
   nSpaceClouds: 10
+  spaceCloudsPrefab:
+  - {fileID: 1106805267063408, guid: 2325110187a3df24ab95d62bcbcb723c, type: 3}
+  - {fileID: 1106805267063408, guid: b0b2c8833c37a744b96ffa5909cae8ba, type: 3}
+  nAstroidFieldPrefab: 7
+  astroidFieldPrefab: {fileID: 1730112452750034, guid: 4df87d5522e7b174d90e60cedc32ef7a, type: 3}
   UpgradeCameraPosition: {x: 0, y: 20, z: -35}
   UpgredeCameraRotation: {x: 30, y: 0, z: 0}
   GamePlayCameraPosition: {x: 0, y: 250, z: 0}

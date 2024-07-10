@@ -17,8 +17,12 @@ public class GameData : ScriptableObject
 
     [Header("Environment Attributes")]
     public float spaceSize;
-    public GameObject spaceCloudsPrefab;
+    public GameObject electricityPrefab;
     public int nSpaceClouds;
+    public GameObject[] spaceCloudsPrefab;
+
+    public int nAstroidFieldPrefab;
+    public GameObject astroidFieldPrefab;
 
     [Header("Upgrade Camera")]
     public Vector3 UpgradeCameraPosition;
