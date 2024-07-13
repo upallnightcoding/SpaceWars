@@ -9,10 +9,21 @@ public class InventoryItemCntrl : MonoBehaviour
     [SerializeField] private TMP_Text xp;
     [SerializeField] private Image image;
 
-    // Start is called before the first frame update
-    public void SetItem(InventoryItemSO item)
+    private InventoryItemSO inventoryItem;
+
+    /**
+     * SetItem() -
+     */
+    public void SetItem(InventoryItemSO inventoryItem)
     {
-        xp.text = item.xp.ToString();
-        image.sprite = item.sprite;
+        this.inventoryItem = inventoryItem;
+
+        xp.text = inventoryItem.xp.ToString();
+        image.sprite = inventoryItem.sprite;
+    }
+
+    public void InventorySelect()
+    {
+        EventManager.Instance.InvokeOnInventorySelection(inventoryItem);
     }
 }

@@ -23,10 +23,12 @@ public class EventManager
     //========================
     public event Action OnDisplayNewGamePanel = delegate { };
     public event Action OnDisplayLoadGamePanel = delegate { };
+    public event Action<InventoryItemSO> OnInventorySelection = delegate { };
     public event Action<long> OnUpdateXP = delegate { };
 
     public void InvokeOnDisplayNewGamePanel() => OnDisplayNewGamePanel.Invoke();
     public void InvokeOnDisplayLoadGamePanel() => OnDisplayLoadGamePanel.Invoke();
+    public void InvokeOnInventorySelection(InventoryItemSO inventoryItem) => OnInventorySelection.Invoke(inventoryItem);
     public void InvokeOnUpdateXP(long value) => OnUpdateXP.Invoke(value);
 
     public event Action<float> OnUpdateFighterHealth = delegate { };

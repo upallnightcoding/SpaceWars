@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e502efc7c9470054f964fd759e1e0f86, type: 3}
   m_Name: AmmoRound02
   m_EditorClassIdentifier: 
+  itemName: Ammo Round 2
   xp: 70
   sprite: {fileID: 21300000, guid: 85d6fac0ebc164445a67fe8da5127d49, type: 3}

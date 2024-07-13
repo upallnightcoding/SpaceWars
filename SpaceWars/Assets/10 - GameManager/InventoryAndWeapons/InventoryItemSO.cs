@@ -7,6 +7,8 @@ using TMPro;
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "Space Wars/Inventory Item")]
 public class InventoryItemSO : ScriptableObject
 {
+    public string itemName;
+
     public int xp;
 
     public Sprite sprite;
