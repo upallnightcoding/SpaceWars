@@ -64,8 +64,8 @@ public class UiCntrl : MonoBehaviour
 
     public void UpdateXP(long value)
     {
-        gamePlayXpText.text = value.ToString() + " XP";
-        levelUpXpText.text = value.ToString() + " XP";
+        gamePlayXpText.text = value.ToString();
+        levelUpXpText.text = value.ToString();
     }
 
     public void DisplayEngagePanel()

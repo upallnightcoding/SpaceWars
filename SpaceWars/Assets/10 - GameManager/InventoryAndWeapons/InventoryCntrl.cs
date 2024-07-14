@@ -20,7 +20,9 @@ public class InventoryCntrl : MonoBehaviour
         foreach(InventoryItemSO item in itemsList)
         {
             GameObject go = Instantiate(inventoryItemPrefab, inventoryCollection.transform);
-            go.GetComponent<InventoryItemCntrl>().SetItem(item);
+            go.GetComponent<InventoryItemCntrl>().SetItem(
+                item, inventoryCollection, weaponsCollection
+            );
 
             itemMapping.Add(item.itemName, go);
         }
@@ -32,23 +34,23 @@ public class InventoryCntrl : MonoBehaviour
         
     }
 
-    public void InventorySelection(InventoryItemSO inventoryItem)
+    public void SelectionHasBeenMade(InventoryItemSO inventoryItem)
     {
         Debug.Log($"Inventory Selection: {inventoryItem.itemName}");
 
         if (itemMapping.TryGetValue(inventoryItem.itemName, out GameObject go))
         {
-            go.transform.parent = weaponsCollection.transform;
+            go.GetComponent<InventoryItemCntrl>().SwitchInventory();
         }
     }
 
     private void OnEnable()
     {
-        EventManager.Instance.OnInventorySelection += InventorySelection;
+        EventManager.Instance.OnInventorySelection += SelectionHasBeenMade;
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.OnInventorySelection -= InventorySelection;
+        EventManager.Instance.OnInventorySelection -= SelectionHasBeenMade;
     }
 }
