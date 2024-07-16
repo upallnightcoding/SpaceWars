@@ -19,15 +19,34 @@ public class FighterCntrl : MonoBehaviour
     private int nGuns = 0;
 
     private bool readyToFire = true;
-    private int ammoCount = 100;
-    private float reloadTime = 3.0f;
-
     private float health = 50;
+
+    // Gun Shooting Attributes
+    //========================
+    private int ammoCount = 0;
+    private int maxAmmoCount = 0;
+    private float reloadTime = 3.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         nGuns = muzzlePoint.Length;
+    }
+
+    public void SetWeapon(InventoryItemSO weapon)
+    {
+        switch(weapon.itemType)
+        {
+            case InventoryItemType.AMMO:
+                ammoCount = weapon.ammoCount;
+                maxAmmoCount = weapon.ammoCount;
+                reloadTime = weapon.reloadTime;
+                break;
+            case InventoryItemType.BOMB:
+                break;
+            case InventoryItemType.SHIELD:
+                break;
+        }
     }
 
     void Update()
@@ -48,19 +67,6 @@ public class FighterCntrl : MonoBehaviour
                 break;
         }
     }
-
-    /*private void MoveFighter(Vector2 moveDirection, float dt)
-    {
-        switch (gameData.flightMode)
-        {
-            case FlightMode.WITHOUT_YAW:
-                MoveFighterWithoutYaw(moveDirection, dt);
-                break;
-            case FlightMode.WITH_YAW:
-                MoveFighterWithYaw(moveDirection, dt);
-                break;
-        }
-    }*/
 
     private void MoveFighterKeyBoard(Vector2 move, Vector2 look, float dt)
     {
@@ -106,30 +112,6 @@ public class FighterCntrl : MonoBehaviour
         }
     }
 
-    /*private void MoveFighterWithYaw(Vector2 moveDirection, float dt)
-    {
-        float horizontalInput = moveDirection.x;
-        float verticalInput = moveDirection.y;
-
-        Vector3 position = transform.forward * speed * Mathf.Abs(verticalInput) * dt;
-        position.y = 0.0f;
-
-        transform.Translate(position, Space.World);
-
-        yaw += horizontalInput * yawAmount * dt * Mathf.Sign(verticalInput);
-
-        float pitch = 0.0f;
-        float roll = Mathf.Lerp(0, 45, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput) * 3.0f;
-
-        Vector3 angles = Vector3.up * yaw + Vector3.right * pitch + Vector3.forward * roll;
-
-        transform.localRotation = Quaternion.Euler(angles);
-
-        angles = cameraObject.eulerAngles;
-        angles.y = yaw;
-        cameraObject.eulerAngles = angles;
-    }*/
-
     private void FireWeapon(bool fire)
     {
         if (fire && readyToFire)
@@ -145,6 +127,9 @@ public class FighterCntrl : MonoBehaviour
         }
     }
 
+    /**
+     * ReLoad() - 
+     */
     private IEnumerator ReLoad()
     {
         float timing = 0.0f;
@@ -159,11 +144,14 @@ public class FighterCntrl : MonoBehaviour
             yield return null;
         }
 
-        ammoCount = 100;
+        ammoCount = maxAmmoCount;
         readyToFire = true;
         EventManager.Instance.InvokeOnUpdateAmmo(1.0f);
     }
 
+    /**
+     * FireMissle() -
+     */
     private IEnumerator FireMissle()
     {
         readyToFire = false;
@@ -176,7 +164,7 @@ public class FighterCntrl : MonoBehaviour
 
         ammoCount -= 2;
 
-        EventManager.Instance.InvokeOnUpdateAmmo(ammoCount / 100.0f);
+        EventManager.Instance.InvokeOnUpdateAmmo((float)ammoCount / maxAmmoCount);
 
         yield return new WaitForSeconds(0.1f);
         readyToFire = true;
@@ -195,5 +183,15 @@ public class FighterCntrl : MonoBehaviour
                 EventManager.Instance.InvokeOnDisplayYoureDead();
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        EventManager.Instance.OnSetWeapon += SetWeapon;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.OnSetWeapon -= SetWeapon;
     }
 }

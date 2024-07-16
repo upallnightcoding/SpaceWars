@@ -41,6 +41,8 @@ public class InventoryCntrl : MonoBehaviour
         if (itemMapping.TryGetValue(inventoryItem.itemName, out GameObject go))
         {
             go.GetComponent<InventoryItemCntrl>().SwitchInventory();
+
+            EventManager.Instance.InvokeOnSetWeapon(inventoryItem);
         }
     }
 

@@ -13,6 +13,12 @@ public class EventManager
     public void InvokeOnUpdateAmmo(float fraction) => OnUpdateAmmo.Invoke(fraction);
     public void InvokeOnReloadAmmo(float fraction) => OnReloadAmmo.Invoke(fraction);
 
+    // Set Fighter
+    //============
+    public event Action<InventoryItemSO> OnSetWeapon = delegate { };
+
+    public void InvokeOnSetWeapon(InventoryItemSO inventoryItem) => OnSetWeapon.Invoke(inventoryItem);
+
     // Display Game Play Banners Events
     //=================================
     public event Action OnDisplayYoureDead = delegate { };

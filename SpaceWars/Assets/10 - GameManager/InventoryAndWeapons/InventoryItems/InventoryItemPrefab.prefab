@@ -965,6 +965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xp: {fileID: 2823112271779026382}
   image: {fileID: 8603360307119587333}
+  notSelectableBG: {fileID: 0}
 --- !u!1001 &7161760914091282595
 PrefabInstance:
   m_ObjectHideFlags: 0
