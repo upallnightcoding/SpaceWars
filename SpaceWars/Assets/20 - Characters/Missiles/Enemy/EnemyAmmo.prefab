@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 2183509388767183870}
   - component: {fileID: 2100774956942032632}
   - component: {fileID: 6150429832274899752}
-  - component: {fileID: 93430797950715994}
   - component: {fileID: 6642785515417771680}
+  - component: {fileID: 93430797950715994}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -148,6 +148,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6642785515417771680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7193770960766654214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7566cf5201491f41bf54b3e7a2bc847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!96 &93430797950715994
 TrailRenderer:
   serializedVersion: 2
@@ -256,15 +268,3 @@ TrailRenderer:
   m_MinVertexDistance: 0.5
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &6642785515417771680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7193770960766654214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7566cf5201491f41bf54b3e7a2bc847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
