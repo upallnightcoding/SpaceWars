@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e502efc7c9470054f964fd759e1e0f86, type: 3}
   m_Name: Missile2
   m_EditorClassIdentifier: 
+  itemType: 0
   itemName: Missile 2
+  description: Missile #2
   xp: 100
   sprite: {fileID: 21300000, guid: 45a94e168db02d441acbca97c251a7d1, type: 3}
+  ammoCount: 0
+  reloadTime: 0

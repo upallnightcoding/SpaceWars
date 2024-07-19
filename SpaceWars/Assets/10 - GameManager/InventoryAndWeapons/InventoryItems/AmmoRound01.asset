@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemName: Ammo Round 1
-  description: This is just a test of AMMO and this is the description.
+  description: '<b>BASIC AMMO #1</b>
+
+
+    Damage: <b>100</b>points per bullet.'
   xp: 40
   sprite: {fileID: 21300000, guid: 87cb45d9c2ad92c4f898dd2e654d7fcf, type: 3}
   ammoCount: 100

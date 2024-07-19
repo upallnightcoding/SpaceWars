@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemName: Ammo Round 2
+  description: "<b>BASIC AMMO #2</b>\n\nDamage: <b>70\t</b>points per bullet."
   xp: 70
   sprite: {fileID: 21300000, guid: 85d6fac0ebc164445a67fe8da5127d49, type: 3}
   ammoCount: 20

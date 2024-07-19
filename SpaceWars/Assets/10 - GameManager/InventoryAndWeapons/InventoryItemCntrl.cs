@@ -8,6 +8,7 @@ public class InventoryItemCntrl : MonoBehaviour
 {
     [SerializeField] private TMP_Text xp;
     [SerializeField] private Image image;
+    [SerializeField] private TMP_Text description;
     [SerializeField] private GameObject notSelectableBG;
 
     public bool IsInventory { get; set; } = true;
@@ -36,6 +37,7 @@ public class InventoryItemCntrl : MonoBehaviour
 
         xp.text = inventoryItem.xp.ToString();
         image.sprite = inventoryItem.sprite;
+        description.text = inventoryItem.description;
     }
 
     public void IsSelectable(long xpAmt)
