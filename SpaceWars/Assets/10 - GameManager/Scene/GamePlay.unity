@@ -10073,6 +10073,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2946833296096687457, guid: bc51e7591e4134642ab8d2682d9e3d01, type: 3}
+      propertyPath: m_text
+      value: "Level Up\t"
+      objectReference: {fileID: 0}
     - target: {fileID: 3020195363629073437, guid: bc51e7591e4134642ab8d2682d9e3d01, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

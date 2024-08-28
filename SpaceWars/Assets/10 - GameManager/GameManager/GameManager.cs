@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
         }
 
         uiCntrl.HideEngageCountDown();
-        //enemyManager.GameLevel(2, fighter);
+        enemyManager.GameLevel(2, fighter);
         cameraCntrl.StartGame(fighter.transform);
     }
 
